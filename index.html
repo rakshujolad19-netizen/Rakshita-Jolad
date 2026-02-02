@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rakshita Jolad | Portfolio</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -18,17 +17,40 @@ body{
   overflow-x:hidden;
 }
 
-/* NAVBAR */
+/* 🌸 FLOATING PETALS */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:18px;
+  height:18px;
+  background:rgba(183,165,255,0.35);
+  border-radius:50% 50% 50% 0;
+  transform:rotate(45deg);
+  animation:fall linear infinite;
+  z-index:-1;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* HEADER */
 header{
-  position:fixed;top:0;width:100%;
-  background:rgba(255,255,255,.9);
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(255,255,255,.95);
   backdrop-filter:blur(10px);
   z-index:1000;
 }
 nav{
-  max-width:1100px;margin:auto;
+  max-width:1100px;
+  margin:auto;
   padding:15px 20px;
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 nav h1{
   font-family:'Playfair Display',serif;
@@ -39,11 +61,7 @@ nav ul{
   display:flex;
   gap:18px;
 }
-nav ul li a{
-  text-decoration:none;
-  color:#555;
-  font-size:.95rem;
-}
+nav ul li a{text-decoration:none;color:#555}
 nav ul li a:hover{color:#7b6cd9}
 
 /* HERO */
@@ -54,7 +72,6 @@ nav ul li a:hover{color:#7b6cd9}
   align-items:center;
   padding-top:90px;
   text-align:center;
-  position:relative;
 }
 .hero img{
   width:170px;height:170px;
@@ -64,110 +81,87 @@ nav ul li a:hover{color:#7b6cd9}
 }
 .hero h2{
   font-family:'Playfair Display',serif;
-  font-size:2.8rem;
+  font-size:2.6rem;
   margin-top:18px;
   color:#7b6cd9;
 }
-.hero p{
-  margin:12px 0;
-  color:#666;
-  font-style:italic;
-}
-.btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:12px 32px;
-  border-radius:30px;
-  background:linear-gradient(45deg,#a79cff,#7b6cd9);
-  color:#fff;
-  text-decoration:none;
-}
-
-/* PETAL FALL */
-.petal{
-  position:fixed;
-  top:-10%;
-  width:18px;height:18px;
-  background:rgba(167,156,255,.55);
-  border-radius:50% 50% 50% 0;
-  transform:rotate(45deg);
-  animation:fall linear infinite;
-  z-index:0;
-}
-@keyframes fall{
-  to{
-    transform:translateY(120vh) rotate(360deg);
-    opacity:0;
-  }
-}
+.hero p{margin:12px 0;color:#666;font-style:italic}
 
 /* SECTIONS */
-section{padding:80px 20px;position:relative;z-index:1}
+section{padding:80px 20px}
 .container{max-width:1100px;margin:auto}
-.section-title{
-  text-align:center;
-  margin-bottom:40px;
-}
+.section-title{text-align:center;margin-bottom:40px}
 .section-title h2{
   font-family:'Playfair Display',serif;
   color:#7b6cd9;
 }
 
-/* CARDS */
+/* GRID & CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
 .card{
   background:#fff;
   padding:25px;
   border-radius:22px;
-  box-shadow:0 10px 30px rgba(0,0,0,.07);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
   transition:.3s;
+  text-align:center;
 }
 .card:hover{transform:translateY(-8px)}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:25px;
-}
 
 /* SKILLS */
-.bar{
-  height:8px;
-  background:#e6e2ff;
-  border-radius:10px;
-  overflow:hidden;
-  margin:6px 0 15px;
-}
-.bar div{
-  height:100%;
-  background:linear-gradient(45deg,#a79cff,#7b6cd9);
-}
-
-/* CERT */
-.cert{
-  cursor:pointer;
+.skills span{
+  display:inline-block;
+  background:#f0edff;
   color:#7b6cd9;
-  font-weight:600;
+  padding:10px 18px;
+  border-radius:30px;
+  margin:8px;
+  font-size:.9rem;
 }
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-.modal img{
-  max-width:90%;
-  max-height:90%;
+/* CERTIFICATIONS */
+.cert-card{cursor:pointer}
+.cert-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
   border-radius:15px;
+  margin-bottom:10px;
+}
+.cert-card h3{color:#7b6cd9}
+.cert-card small{
+  display:block;
+  margin-top:8px;
+  color:#7b6cd9;
+  font-style:italic;
+}
+
+/* LEARNING */
+.learning-item{position:relative;cursor:pointer}
+.learning-item img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:18px;
+}
+.learning-item span{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.9);
+  color:#7b6cd9;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
 }
 
 /* CONTACT */
-.contact{
-  text-align:center;
-}
+.contact{text-align:center}
 .contact a{
   margin:10px;
   display:inline-block;
@@ -178,22 +172,43 @@ section{padding:80px 20px;position:relative;z-index:1}
   box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
 
-/* MOBILE */
-@media(max-width:768px){
-  nav ul{display:none}
-  .hero h2{font-size:2.2rem}
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.modal-content{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  max-width:700px;
+  width:90%;
+  text-align:center;
+}
+.modal-content img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
 }
 
 /* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  color:#777;
-}
+footer{text-align:center;padding:20px;color:#777}
 </style>
 </head>
 
 <body>
+
+<!-- PETALS -->
+<div class="petal" style="left:10%;animation-duration:16s"></div>
+<div class="petal" style="left:25%;animation-duration:20s"></div>
+<div class="petal" style="left:40%;animation-duration:18s"></div>
+<div class="petal" style="left:60%;animation-duration:22s"></div>
+<div class="petal" style="left:80%;animation-duration:17s"></div>
 
 <header>
 <nav>
@@ -202,6 +217,7 @@ footer{
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#cert">Certifications</a></li>
+<li><a href="#learning">Learning Journey</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -211,10 +227,9 @@ footer{
 <!-- HERO -->
 <section class="hero">
 <div>
-<img src="RJ.png" alt="Rakshita Jolad">
+<img src="RJ.png">
 <h2>Rakshita Jolad</h2>
 <p>Grace in dance, growth in technology ✨</p>
-<a href="#contact" class="btn">Get In Touch 💜</a>
 </div>
 </section>
 
@@ -223,9 +238,15 @@ footer{
 <div class="container">
 <div class="section-title"><h2>About Me</h2></div>
 <div class="card">
-I am Rakshita Jolad from Karnataka. I am currently pursuing BCA in Cloud Computing at Kristu Jayanti University.
-I am passionate about building a career in the technology field, with a strong interest in web development and
-cloud computing. Apart from academics, I enjoy drawing and dancing, which help me express creativity and emotions.
+I am Rakshita Jolad from Karnataka, currently pursuing BCA in Cloud Computing at Kristu Jayanti University.
+I am passionate about building a career in the technology field with a strong interest in web development
+and cloud computing. I enjoy learning new technical skills and exploring how modern applications and
+websites are designed. Apart from academics, I like drawing and dancing, which help me express my
+creativity and maintain a balanced lifestyle. This portfolio website is my first college project,
+created to showcase my profile, technical skills, and certificates while gaining hands-on experience
+in web development. Through this project, I am learning how to design user-friendly webpages using
+HTML, CSS, and JavaScript, and I look forward to developing more projects that strengthen my knowledge
+and prepare me for a successful career in the IT industry.
 </div>
 </div>
 </section>
@@ -234,10 +255,9 @@ cloud computing. Apart from academics, I enjoy drawing and dancing, which help m
 <section id="skills">
 <div class="container">
 <div class="section-title"><h2>Technical Skills</h2></div>
-<div class="card">
-HTML & CSS<div class="bar"><div style="width:85%"></div></div>
-JavaScript<div class="bar"><div style="width:70%"></div></div>
-Python<div class="bar"><div style="width:75%"></div></div>
+<div class="card skills">
+<span>HTML</span><span>CSS</span><span>JavaScript</span>
+<span>Python</span><span>AWS Basics</span><span>Cloud Computing</span>
 </div>
 </div>
 </section>
@@ -247,8 +267,39 @@ Python<div class="bar"><div style="width:75%"></div></div>
 <div class="container">
 <div class="section-title"><h2>Certifications</h2></div>
 <div class="grid">
-<div class="card cert" onclick="openCert('certificate1.jpg')">Web Development – Click to View</div>
-<div class="card cert" onclick="openCert('certificate2.jpg')">Cloud / Python – Click to View</div>
+<div class="card cert-card" onclick="openCert('cert1.jpg','NASSCOM Certification')">
+<img src="cert1.jpg">
+<h3>NASSCOM</h3>
+<small>Click here to see the certificate ↑</small>
+</div>
+<div class="card cert-card" onclick="openCert('cert2.jpg','Digital Engineering')">
+<img src="cert2.jpg">
+<h3>Digital Engineering</h3>
+<small>Click here to see the certificate ↑</small>
+</div>
+<div class="card cert-card" onclick="openCert('cert3.jpg','AWS Certification')">
+<img src="cert3.jpg">
+<h3>AWS</h3>
+<small>Click here to see the certificate ↑</small>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LEARNING JOURNEY -->
+<section id="learning">
+<div class="container">
+<div class="section-title"><h2>Learning Journey</h2></div>
+<div class="grid">
+<div class="learning-item" onclick="openLearning('learning1.jpg',' hi i am rakshita.')">
+<img src="rj lj1.jpeg"><span>Click here</span>
+</div>
+<div class="learning-item" onclick="openLearning('learning2.jpg','Delivered presentations improving confidence and communication.')">
+<img src="rj lj2.jpeg"><span>Click here</span>
+</div>
+<div class="learning-item" onclick="openLearning('learning3.jpg','Attended workshops enhancing technology knowledge.')">
+<img src="rj lj 3.jpeg"><span>Click here</span>
+</div>
 </div>
 </div>
 </section>
@@ -280,31 +331,34 @@ Python<div class="bar"><div style="width:75%"></div></div>
 © 2026 Rakshita Jolad • Lavender Dream 🌸
 </footer>
 
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeCert()">
-<img id="modalImg">
+<!-- MODALS -->
+<div class="modal" id="learningModal" onclick="closeLearning()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="learningImg"><p id="learningText"></p>
+</div>
+</div>
+
+<div class="modal" id="certModal" onclick="closeCert()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="certImg"><p id="certText"></p>
+</div>
 </div>
 
 <script>
-/* PETALS */
-for(let i=0;i<25;i++){
-  let p=document.createElement('div');
-  p.className='petal';
-  p.style.left=Math.random()*100+'%';
-  p.style.animationDuration=(10+Math.random()*10)+'s';
-  p.style.opacity=Math.random();
-  document.body.appendChild(p);
+function openLearning(img,text){
+learningModal.style.display="flex";
+learningImg.src=img;
+learningText.innerText=text;
 }
-
-/* CERT POPUP */
-function openCert(img){
-  document.getElementById('modal').style.display='flex';
-  document.getElementById('modalImg').src=img;
+function closeLearning(){learningModal.style.display="none";}
+function openCert(img,text){
+certModal.style.display="flex";
+certImg.src=img;
+certText.innerText=text;
 }
-function closeCert(){
-  document.getElementById('modal').style.display='none';
-}
+function closeCert(){certModal.style.display="none";}
 </script>
 
 </body>
 </html>
+
