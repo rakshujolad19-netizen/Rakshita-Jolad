@@ -17,24 +17,6 @@ body{
   overflow-x:hidden;
 }
 
-/* 🌸 FLOATING PETALS */
-.petal{
-  position:fixed;
-  top:-10%;
-  width:18px;
-  height:18px;
-  background:rgba(183,165,255,0.35);
-  border-radius:50% 50% 50% 0;
-  transform:rotate(45deg);
-  animation:fall linear infinite;
-  z-index:-1;
-}
-@keyframes fall{
-  0%{transform:translateY(-10vh) rotate(0);opacity:0}
-  10%{opacity:1}
-  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
 /* HEADER */
 header{
   position:fixed;
@@ -112,7 +94,6 @@ section{padding:80px 20px}
 }
 .card:hover{transform:translateY(-8px)}
 
-/* SKILLS */
 .skills span{
   display:inline-block;
   background:#f0edff;
@@ -123,42 +104,23 @@ section{padding:80px 20px}
   font-size:.9rem;
 }
 
-/* CERTIFICATIONS */
-.cert-card{cursor:pointer}
-.cert-card img{
+/* FEEDBACK */
+input,textarea{
   width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:15px;
-  margin-bottom:10px;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ddd;
 }
-.cert-card h3{color:#7b6cd9}
-.cert-card small{
-  display:block;
-  margin-top:8px;
-  color:#7b6cd9;
-  font-style:italic;
+button{
+  background:#7b6cd9;
+  color:white;
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
 }
-
-/* LEARNING */
-.learning-item{position:relative;cursor:pointer}
-.learning-item img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:18px;
-}
-.learning-item span{
-  position:absolute;
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(255,255,255,.9);
-  color:#7b6cd9;
-  padding:6px 14px;
-  border-radius:20px;
-  font-size:.85rem;
-}
+button:hover{opacity:.9}
 
 /* CONTACT */
 .contact{text-align:center}
@@ -172,43 +134,11 @@ section{padding:80px 20px}
   box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-.modal-content{
-  background:#fff;
-  padding:25px;
-  border-radius:20px;
-  max-width:700px;
-  width:90%;
-  text-align:center;
-}
-.modal-content img{
-  width:100%;
-  border-radius:15px;
-  margin-bottom:15px;
-}
-
-/* FOOTER */
 footer{text-align:center;padding:20px;color:#777}
 </style>
 </head>
 
 <body>
-
-<!-- PETALS -->
-<div class="petal" style="left:10%;animation-duration:16s"></div>
-<div class="petal" style="left:25%;animation-duration:20s"></div>
-<div class="petal" style="left:40%;animation-duration:18s"></div>
-<div class="petal" style="left:60%;animation-duration:22s"></div>
-<div class="petal" style="left:80%;animation-duration:17s"></div>
 
 <header>
 <nav>
@@ -216,15 +146,13 @@ footer{text-align:center;padding:20px;color:#777}
 <ul>
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
-<li><a href="#cert">Certifications</a></li>
-<li><a href="#learning">Learning Journey</a></li>
 <li><a href="#projects">Projects</a></li>
+<li><a href="#feedback">Feedback</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
 <div>
 <img src="Profile pic.png">
@@ -233,25 +161,15 @@ footer{text-align:center;padding:20px;color:#777}
 </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
 <div class="container">
 <div class="section-title"><h2>About Me</h2></div>
 <div class="card">
-I am Rakshita Jolad from Karnataka, currently pursuing BCA in Cloud Computing at Kristu Jayanti University.
-I am passionate about building a career in the technology field with a strong interest in web development
-and cloud computing. I enjoy learning new technical skills and exploring how modern applications and
-websites are designed. Apart from academics, I like drawing and dancing, which help me express my
-creativity and maintain a balanced lifestyle. This portfolio website is my first college project,
-created to showcase my profile, technical skills, and certificates while gaining hands-on experience
-in web development. Through this project, I am learning how to design user-friendly webpages using
-HTML, CSS, and JavaScript, and I look forward to developing more projects that strengthen my knowledge
-and prepare me for a successful career in the IT industry.
+I am Rakshita Jolad, pursuing BCA in Cloud Computing. Passionate about web development and cloud technologies.
 </div>
 </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
 <div class="container">
 <div class="section-title"><h2>Technical Skills</h2></div>
@@ -262,49 +180,6 @@ and prepare me for a successful career in the IT industry.
 </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="cert">
-<div class="container">
-<div class="section-title"><h2>Certifications</h2></div>
-<div class="grid">
-<div class="card cert-card" onclick="openCert('Front and web development.png','NASSCOM Certification')">
-<img src="Front and web development.png">
-<h3>Front and web development</h3>
-<small>Click here to see the certificate ↑</small>
-</div>
-<div class="card cert-card" onclick="openCert('Digital Nasscom.png','Digital Engineering')">
-<img src="Digital Nasscom.png">
-<h3>Digital Engineering</h3>
-<small>Click here to see the certificate ↑</small>
-</div>
-<div class="card cert-card" onclick="openCert('AWS RJ.png','AWS Certification')">
-<img src="AWS RJ.png">
-<h3>AWS</h3>
-<small>Click here to see the certificate ↑</small>
-</div>
-</div>
-</div>
-</section>
-
-<!-- LEARNING JOURNEY -->
-<section id="learning">
-<div class="container">
-<div class="section-title"><h2>Learning Journey</h2></div>
-<div class="grid">
-<div class="learning-item" onclick="openLearning('SIH ideathin image.jpeg',' A glimpse from the SIH Idea-thon, where our team FitTech presented a website concept aimed at supporting mental and physical health. This was my first hackathon-style experience, and it became a major learning milestone. Collaborating with my teammates to structure the idea, develop the concept, and present it confidently helped me understand the importance of creativity, coordination, and technical thinking in building meaningful solutions.')">
-<img src="SIH ideathin.jpeg"><span>Click here</span>
-</div>
-<div class="learning-item" onclick="openLearning('Cloud innovators socity image.jpeg','A glimpse from the inaugural JAM session organized by the Cloud Innovators Society at our university. This interactive session introduced us to AWS Cloud concepts through discussions and peer learning. It was an inspiring experience to engage with seniors and classmates, exchange ideas, and understand real-world applications of cloud computing. Moments like these have played a key role in building my technical confidence and passion for the cloud domain.')">
-<img src="cloud innovators socity.jpeg"><span>Click here</span>
-</div>
-<div class="learning-item" onclick="openLearning('rakshita.jpeg','This image highlights my achievement at Synchrotech, a departmental IT fest organized by our seniors. I participated in the event Storm Breaker, competing alongside peers and seniors, and secured First Place. The experience strengthened my problem-solving skills, confidence, and passion for technology and cloud computing.')">
-<img src="synchrotech.jpeg"><span>Click here</span>
-</div>
-</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
 <section id="projects">
 <div class="container">
 <div class="section-title"><h2>Projects</h2></div>
@@ -315,7 +190,22 @@ and prepare me for a successful career in the IT industry.
 </div>
 </section>
 
-<!-- CONTACT -->
+<!-- FEEDBACK SECTION -->
+<section id="feedback">
+<div class="container">
+<div class="section-title"><h2>Feedback</h2></div>
+<div class="card">
+<form id="feedbackForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" placeholder="Your Feedback" required></textarea>
+<button type="submit">Submit Feedback</button>
+<p id="responseMessage" style="margin-top:10px;"></p>
+</form>
+</div>
+</div>
+</section>
+
 <section id="contact">
 <div class="container">
 <div class="section-title"><h2>Get In Touch</h2></div>
@@ -331,36 +221,43 @@ and prepare me for a successful career in the IT industry.
 © 2026 Rakshita Jolad • Lavender Dream 🌸
 </footer>
 
-<!-- MODALS -->
-<div class="modal" id="learningModal" onclick="closeLearning()">
-<div class="modal-content" onclick="event.stopPropagation()">
-<img id="learningImg"><p id="learningText"></p>
-</div>
-</div>
-
-<div class="modal" id="certModal" onclick="closeCert()">
-<div class="modal-content" onclick="event.stopPropagation()">
-<img id="certImg"><p id="certText"></p>
-</div>
-</div>
+<!-- SUPABASE CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-function openLearning(img,text){
-learningModal.style.display="flex";
-learningImg.src=img;
-learningText.innerText=text;
-}
-function closeLearning(){learningModal.style.display="none";}
-function openCert(img,text){
-certModal.style.display="flex";
-certImg.src=img;
-certText.innerText=text;
-}
-function closeCert(){certModal.style.display="none";}
+const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+const feedbackForm = document.getElementById("feedbackForm");
+const responseMessage = document.getElementById("responseMessage");
+
+feedbackForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const { error } = await supabase
+    .from("feedback")
+    .insert([{ name, email, message }]);
+
+  if (error) {
+    responseMessage.style.color = "red";
+    responseMessage.innerText = "Error submitting feedback!";
+  } else {
+    responseMessage.style.color = "#7b6cd9";
+    responseMessage.innerText = "Thank you! Feedback submitted 💜";
+    feedbackForm.reset();
+  }
+});
 </script>
 
 </body>
 </html>
+
 
 
 
