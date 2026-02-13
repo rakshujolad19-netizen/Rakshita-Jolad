@@ -1,59 +1,320 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Feedback Form</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#f4efff,#fff);
+  color:#333;
+  overflow-x:hidden;
+}
+
+/* PETALS */
+.petal{
+  position:fixed;
+  top:-10%;
+  width:18px;
+  height:18px;
+  background:rgba(183,165,255,0.35);
+  border-radius:50% 50% 50% 0;
+  transform:rotate(45deg);
+  animation:fall linear infinite;
+  z-index:-1;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+nav{
+  max-width:1100px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+nav h1{
+  font-family:'Playfair Display',serif;
+  color:#7b6cd9;
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:18px;
+}
+nav ul li a{text-decoration:none;color:#555}
+nav ul li a:hover{color:#7b6cd9}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding-top:90px;
+  text-align:center;
+}
+.hero img{
+  width:170px;height:170px;
+  border-radius:50%;
+  border:6px solid #d8d1ff;
+  box-shadow:0 15px 30px rgba(123,108,217,.3);
+}
+.hero h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;
+  margin-top:18px;
+  color:#7b6cd9;
+}
+.hero p{margin:12px 0;color:#666;font-style:italic}
+
+/* SECTIONS */
+section{padding:80px 20px}
+.container{max-width:1100px;margin:auto}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  color:#7b6cd9;
+}
+
+/* GRID & CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+.card{
+  background:#fff;
+  padding:25px;
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
+  text-align:center;
+}
+.card:hover{transform:translateY(-8px)}
+
+/* SKILLS */
+.skills span{
+  display:inline-block;
+  background:#f0edff;
+  color:#7b6cd9;
+  padding:10px 18px;
+  border-radius:30px;
+  margin:8px;
+  font-size:.9rem;
+}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact a{
+  margin:10px;
+  display:inline-block;
+  padding:15px;
+  background:#fff;
+  border-radius:50%;
+  color:#7b6cd9;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* FEEDBACK */
+#feedback input,
+#feedback textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:12px;
+  border:1px solid #ddd;
+  font-family:'Poppins',sans-serif;
+}
+#feedback button{
+  background:#7b6cd9;
+  color:#fff;
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+#feedback button:hover{
+  background:#5f52c9;
+}
+.feedback-item{
+  background:#f4efff;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+  text-align:left;
+}
+
+footer{text-align:center;padding:20px;color:#777}
+</style>
 </head>
+
 <body>
 
-  <h2>Feedback Form</h2>
+<header>
+<nav>
+<h1>My Portfolio</h1>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#feedback">Feedback</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
 
-  <form id="feedbackForm">
-    <input type="text" id="name" placeholder="Your Name" required><br><br>
-    <input type="email" id="email" placeholder="Your Email" required><br><br>
-    <textarea id="message" placeholder="Your Feedback" required></textarea><br><br>
-    <button type="submit">Submit Feedback</button>
-  </form>
+<section class="hero">
+<div>
+<img src="Profile pic.png">
+<h2>Rakshita Jolad</h2>
+<p>Growth in technology ✨</p>
+</div>
+</section>
 
-  <p id="statusMessage"></p>
+<section id="about">
+<div class="container">
+<div class="section-title"><h2>About Me</h2></div>
+<div class="card">
+BCA Cloud Computing student passionate about web development and cloud technologies.
+</div>
+</div>
+</section>
 
-  <script>
-    // 🔹 YOUR SUPABASE DETAILS ADDED HERE
-    const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+<section id="skills">
+<div class="container">
+<div class="section-title"><h2>Technical Skills</h2></div>
+<div class="card skills">
+<span>HTML</span><span>CSS</span><span>JavaScript</span>
+<span>Python</span><span>AWS Basics</span><span>Cloud Computing</span>
+</div>
+</div>
+</section>
 
-    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+<section id="projects">
+<div class="container">
+<div class="section-title"><h2>Projects</h2></div>
+<div class="grid">
+<div class="card">Personal Portfolio Website</div>
+<div class="card">Student Management System</div>
+</div>
+</div>
+</section>
 
-    const form = document.getElementById("feedbackForm");
-    const statusMessage = document.getElementById("statusMessage");
+<!-- FEEDBACK SECTION -->
+<section id="feedback">
+<div class="container">
+<div class="section-title"><h2>Feedback</h2></div>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+<div class="card">
+<form onsubmit="submitFeedback(event)">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+<button type="submit">Submit Feedback</button>
+</form>
+</div>
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
+<div class="card" style="margin-top:30px;">
+<h3 style="color:#7b6cd9;margin-bottom:15px;">Public Feedback</h3>
+<div id="feedbackList"></div>
+</div>
 
-      const { data, error } = await supabase
-        .from("feedback")
-        .insert([
-          { name: name, email: email, message: message }
-        ]);
+</div>
+</section>
 
-      if (error) {
-        statusMessage.style.color = "red";
-        statusMessage.innerText = "❌ Feedback not submitted. Error: " + error.message;
-        console.error(error);
-      } else {
-        statusMessage.style.color = "green";
-        statusMessage.innerText = "✅ Feedback submitted successfully!";
-        form.reset();
-      }
+<section id="contact">
+<div class="container">
+<div class="section-title"><h2>Get In Touch</h2></div>
+<div class="contact">
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="mailto:rakshita@example.com"><i class="fas fa-envelope"></i></a>
+</div>
+</div>
+</section>
+
+<footer>
+© 2026 Rakshita Jolad • Lavender Dream 🌸
+</footer>
+
+<script>
+
+// SUPABASE CONNECTION
+const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// SUBMIT FEEDBACK
+async function submitFeedback(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const { error } = await supabase
+    .from("feedback")
+    .insert([{ name, email, message }]);
+
+  if (error) {
+    alert("Error submitting feedback");
+    console.error(error);
+  } else {
+    alert("Feedback submitted successfully!");
+    document.querySelector("form").reset();
+    loadFeedback();
+  }
+}
+
+// LOAD FEEDBACK
+async function loadFeedback() {
+  const { data, error } = await supabase
+    .from("feedback")
+    .select("*")
+    .order("id", { ascending: false });
+
+  if (!error && data) {
+    const list = document.getElementById("feedbackList");
+    list.innerHTML = "";
+
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "feedback-item";
+      div.innerHTML = `<strong>${item.name}</strong><br>${item.message}`;
+      list.appendChild(div);
     });
-  </script>
+  }
+}
+
+loadFeedback();
+
+</script>
 
 </body>
 </html>
+
 
 
 
