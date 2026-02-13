@@ -8,13 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+<!-- SUPABASE CDN-->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(135deg,#f4efff,#ffffff);
   color:#333;
+  overflow-x:hidden;
 }
+
+/* HEADER */
 header{
   position:fixed;
   top:0;
@@ -47,51 +54,196 @@ nav ul li a{
 nav ul li a:hover{
   color:#7b6cd9;
 }
-section{padding:100px 20px;}
-.container{max-width:1100px;margin:auto;}
-.section-title{text-align:center;margin-bottom:40px;}
-.section-title h2{
-  font-family:'Playfair Display',serif;
-  color:#7b6cd9;
-}
+
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
+  padding-top:90px;
   text-align:center;
 }
 .hero img{
-  width:170px;height:170px;border-radius:50%;
+  width:170px;
+  height:170px;
+  border-radius:50%;
   border:6px solid #d8d1ff;
   box-shadow:0 15px 30px rgba(123,108,217,.3);
 }
 .hero h2{
   font-family:'Playfair Display',serif;
-  font-size:2.6rem;margin-top:18px;color:#7b6cd9;
+  font-size:2.6rem;
+  margin-top:18px;
+  color:#7b6cd9;
 }
-.hero p{margin:12px 0;color:#666;font-style:italic;}
+.hero p{
+  margin:12px 0;
+  color:#666;
+  font-style:italic;
+}
+
+/* SECTIONS */
+section{
+  padding:80px 20px;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+.section-title{
+  text-align:center;
+  margin-bottom:40px;
+}
+.section-title h2{
+  font-family:'Playfair Display',serif;
+  color:#7b6cd9;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
 .card{
-  background:#fff;padding:25px;border-radius:22px;
+  background:#fff;
+  padding:25px;
+  border-radius:22px;
   box-shadow:0 10px 30px rgba(0,0,0,.08);
+  transition:.3s;
   text-align:center;
 }
+.card:hover{
+  transform:translateY(-8px);
+}
+
+/* SKILLS */
+.skills span{
+  display:inline-block;
+  background:#f0edff;
+  color:#7b6cd9;
+  padding:10px 18px;
+  border-radius:30px;
+  margin:8px;
+  font-size:.9rem;
+}
+
+/* CERTIFICATIONS */
+.cert-card{
+  cursor:pointer;
+}
+.cert-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:15px;
+  margin-bottom:10px;
+}
+.cert-card h3{
+  color:#7b6cd9;
+}
+.cert-card small{
+  display:block;
+  margin-top:8px;
+  color:#7b6cd9;
+  font-style:italic;
+}
+
+/* LEARNING */
+.learning-item{
+  position:relative;
+  cursor:pointer;
+}
+.learning-item img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:18px;
+}
+.learning-item span{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.9);
+  color:#7b6cd9;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.85rem;
+}
+
+/* CONTACT */
+.contact{
+  text-align:center;
+}
+.contact a{
+  margin:10px;
+  display:inline-block;
+  padding:15px;
+  background:#fff;
+  border-radius:50%;
+  color:#7b6cd9;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+/* FEEDBACK */
 .feedback-form{
-  max-width:600px;margin:auto;
-  display:flex;flex-direction:column;gap:15px;
+  max-width:600px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
 }
 .feedback-form input,
 .feedback-form textarea{
-  padding:12px;border-radius:12px;border:1px solid #ddd;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ddd;
   font-family:'Poppins',sans-serif;
 }
 .feedback-form button{
-  padding:12px;border:none;border-radius:25px;
-  background:#7b6cd9;color:#fff;font-weight:600;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:#7b6cd9;
+  color:#fff;
+  font-weight:600;
   cursor:pointer;
 }
-.feedback-form button:hover{background:#5f52b5;}
-footer{text-align:center;padding:20px;color:#777;}
+.feedback-form button:hover{
+  background:#5f52b5;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+.modal-content{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  max-width:700px;
+  width:90%;
+  text-align:center;
+}
+.modal-content img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
 </style>
 </head>
 
@@ -102,6 +254,11 @@ footer{text-align:center;padding:20px;color:#777;}
 <h1>My Portfolio</h1>
 <ul>
 <li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#cert">Certifications</a></li>
+<li><a href="#learning">Learning</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
 <li><a href="#feedback">Feedback</a></li>
 </ul>
 </nav>
@@ -122,70 +279,204 @@ footer{text-align:center;padding:20px;color:#777;}
 <div class="section-title"><h2>About Me</h2></div>
 <div class="card">
 I am Rakshita Jolad from Karnataka, currently pursuing BCA in Cloud Computing at Kristu Jayanti University.
-I am passionate about web development and cloud computing.
+I am passionate about web development and cloud computing. This portfolio is my first college project,
+created to showcase my profile, skills, certifications, and learning journey.
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+<div class="section-title"><h2>Technical Skills</h2></div>
+<div class="card skills">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>Python</span>
+<span>AWS Basics</span>
+<span>Cloud Computing</span>
+</div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="cert">
+<div class="container">
+<div class="section-title"><h2>Certifications</h2></div>
+<div class="grid">
+<div class="card cert-card" onclick="openCert('Front and web development.png','NASSCOM Front-End Certification')">
+<img src="Front and web development.png">
+<h3>Front-End Development</h3>
+<small>Click to view certificate</small>
+</div>
+
+<div class="card cert-card" onclick="openCert('Digital Nasscom.png','Digital Engineering Certification')">
+<img src="Digital Nasscom.png">
+<h3>Digital Engineering</h3>
+<small>Click to view certificate</small>
+</div>
+
+<div class="card cert-card" onclick="openCert('AWS RJ.png','AWS Cloud Certification')">
+<img src="AWS RJ.png">
+<h3>AWS Cloud</h3>
+<small>Click to view certificate</small>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LEARNING JOURNEY -->
+<section id="learning">
+<div class="container">
+<div class="section-title"><h2>Learning Journey</h2></div>
+<div class="grid">
+
+<div class="learning-item" onclick="openLearning('SIH ideathin.jpeg','A glimpse from the SIH Idea-thon where our team FitTech presented a website concept for mental and physical health. It was my first hackathon-style experience and a major learning milestone.')">
+<img src="SIH ideathin.jpeg">
+<span>Click here</span>
+</div>
+
+<div class="learning-item" onclick="openLearning('cloud innovators socity.jpeg','A glimpse from the Cloud Innovators Society JAM session where we explored AWS cloud concepts and peer learning.')">
+<img src="cloud innovators socity.jpeg">
+<span>Click here</span>
+</div>
+
+<div class="learning-item" onclick="openLearning('synchrotech.jpeg','This image highlights my First Place achievement at Synchrotech IT Fest in the event Storm Breaker.')">
+<img src="synchrotech.jpeg">
+<span>Click here</span>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<div class="section-title"><h2>Projects</h2></div>
+<div class="grid">
+<div class="card">Personal Portfolio Website</div>
+<div class="card">Student Management System</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="container">
+<div class="section-title"><h2>Get In Touch</h2></div>
+<div class="contact">
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="mailto:rakshita@example.com"><i class="fas fa-envelope"></i></a>
 </div>
 </div>
 </section>
 
 <!-- FEEDBACK -->
 <section id="feedback">
-<div class="container">
-<div class="section-title"><h2>Feedback</h2></div>
+<div class="container card">
+<h2 class="section-title">Feedback</h2>
 
-<form id="feedbackForm" class="feedback-form">
-  <input type="text" id="name" placeholder="Your Name" required>
-  <input type="email" id="email" placeholder="Your Email" required>
-  <textarea id="message" rows="5" placeholder="Your Feedback..." required></textarea>
-  <button type="submit">Submit Feedback</button>
-  <p id="formMessage" style="text-align:center; font-weight:600;"></p>
+<form class="feedback-form" id="feedbackForm">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
+<button type="submit">Submit Feedback</button>
 </form>
 
+<div class="feedback-status" id="status"></div>
 </div>
 </section>
+
+<footer style="text-align:center;padding:20px;color:var(--muted)">
+© 2026 Rakshita
+</footer>
+
+<script>
+/* 🔗 SUPABASE CONFIG */
+const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+/* 📨 FEEDBACK SUBMIT */
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const status = document.getElementById("status");
+status.innerText = "Submitting...";
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+const { error } = await supabaseClient
+.from("feedbacks")
+.insert([{ name, email, message }]);
+
+if (error) {
+status.innerText = "❌ Error submitting feedback";
+status.style.color = "red";
+} else {
+status.innerText = "✅ Feedback submitted successfully!";
+status.style.color = "#00d4ff";
+e.target.reset();
+}});
+</script>
+
+</body>
+</html>
 
 <footer>
 © 2026 Rakshita Jolad • Lavender Dream 🌸
 </footer>
 
-<!-- SUPABASE CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- MODALS -->
+<div class="modal" id="learningModal" onclick="closeLearning()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="learningImg">
+<p id="learningText"></p>
+</div>
+</div>
+
+<div class="modal" id="certModal" onclick="closeCert()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="certImg">
+<p id="certText"></p>
+</div>
+</div>
 
 <script>
-// Supabase connection
-const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+function openLearning(img,text){
+document.getElementById("learningModal").style.display="flex";
+document.getElementById("learningImg").src=img;
+document.getElementById("learningText").innerText=text;
+}
+function closeLearning(){
+document.getElementById("learningModal").style.display="none";
+}
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+function openCert(img,text){
+document.getElementById("certModal").style.display="flex";
+document.getElementById("certImg").src=img;
+document.getElementById("certText").innerText=text;
+}
+function closeCert(){
+document.getElementById("certModal").style.display="none";
+}
 
-document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-  const formMessage = document.getElementById("formMessage");
-
-  formMessage.innerText = "Submitting...";
-  formMessage.style.color = "#555";
-
-  const { error } = await supabase
-    .from("feedback")
-    .insert([{ name, email, message }]);
-
-  if (error) {
-    formMessage.innerText = "❌ Error in submitting feedback!";
-    formMessage.style.color = "red";
-    console.log(error);
-  } else {
-    formMessage.innerText = "✅ Feedback sent successfully!";
-    formMessage.style.color = "green";
-    document.getElementById("feedbackForm").reset();
-  }
-});
+function submitFeedback(e){
+e.preventDefault();
+alert("Thank you for your feedback 💜");
+e.target.reset();
+}
 </script>
 
 </body>
 </html>
+
 
 
 
