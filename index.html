@@ -1,229 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rakshita Jolad | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#f4efff,#fff);
-  color:#333;
-  overflow-x:hidden;
-}
-
-/* HEADER */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-nav h1{
-  font-family:'Playfair Display',serif;
-  color:#7b6cd9;
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:18px;
-}
-nav ul li a{text-decoration:none;color:#555}
-nav ul li a:hover{color:#7b6cd9}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding-top:90px;
-  text-align:center;
-}
-.hero img{
-  width:170px;height:170px;
-  border-radius:50%;
-  border:6px solid #d8d1ff;
-  box-shadow:0 15px 30px rgba(123,108,217,.3);
-}
-.hero h2{
-  font-family:'Playfair Display',serif;
-  font-size:2.6rem;
-  margin-top:18px;
-  color:#7b6cd9;
-}
-.hero p{margin:12px 0;color:#666;font-style:italic}
-
-section{padding:80px 20px}
-.container{max-width:1100px;margin:auto}
-.section-title{text-align:center;margin-bottom:40px}
-.section-title h2{
-  font-family:'Playfair Display',serif;
-  color:#7b6cd9;
-}
-
-.card{
-  background:#fff;
-  padding:25px;
-  border-radius:22px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  text-align:center;
-}
-
-/* FEEDBACK */
-.feedback-form{
-  max-width:600px;
-  margin:auto;
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-.feedback-form input,
-.feedback-form textarea{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:12px;
-  border:1px solid #ddd;
-  font-family:'Poppins',sans-serif;
-}
-.feedback-form button{
-  background:#7b6cd9;
-  color:#fff;
-  padding:12px 20px;
-  border:none;
-  border-radius:25px;
-  cursor:pointer;
-}
-.feedback-form button:hover{
-  background:#5f52b5;
-}
-.message{
-  text-align:center;
-  margin-top:12px;
-  font-weight:500;
-}
-
-footer{text-align:center;padding:20px;color:#777}
-</style>
-</head>
-
-<body>
-
-<header>
-<nav>
-<h1>My Portfolio</h1>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#feedback">Feedback</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</header>
-
-<section class="hero">
-<div>
-<img src="Profile pic.png">
-<h2>Rakshita Jolad</h2>
-<p>Growth in technology ✨</p>
-</div>
-</section>
-
-<section id="about">
-<div class="container">
-<div class="section-title"><h2>About Me</h2></div>
-<div class="card">
-I am Rakshita Jolad from Karnataka, currently pursuing BCA in Cloud Computing. I am passionate about web development and cloud computing and continuously learning new technologies to build modern applications.
-</div>
-</div>
-</section>
-
 <!-- FEEDBACK SECTION -->
-<section id="feedback">
-<div class="container">
-<div class="section-title"><h2>Feedback</h2></div>
+<section id="feedback" style="padding:80px 20px;">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);">
+    
+    <h2 style="text-align:center;color:#7b6cd9;margin-bottom:20px;">Feedback</h2>
 
-<div class="feedback-form">
-<form id="feedbackForm">
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="email" id="email" placeholder="Your Email" required>
-<textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-<button type="submit">Submit Feedback</button>
-</form>
-<div class="message" id="formMessage"></div>
-</div>
+    <form id="feedbackForm">
+      <input type="text" id="name" placeholder="Your Name" required
+        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;">
 
-</div>
+      <input type="email" id="email" placeholder="Your Email" required
+        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;">
+
+      <textarea id="message" rows="4" placeholder="Your Message" required
+        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;"></textarea>
+
+      <button type="submit"
+        style="background:#7b6cd9;color:#fff;padding:12px 20px;border:none;border-radius:25px;cursor:pointer;width:100%;">
+        Submit Feedback
+      </button>
+    </form>
+
+    <p id="formMessage" style="text-align:center;margin-top:15px;font-weight:500;"></p>
+
+  </div>
 </section>
 
-<section id="contact">
-<div class="container">
-<div class="section-title"><h2>Contact</h2></div>
-<div class="card">
-<p>Email: rakshita@example.com</p>
-</div>
-</div>
-</section>
-
-<footer>
-© 2026 Rakshita Jolad • Lavender Dream 🌸
-</footer>
 
 <!-- SUPABASE CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+  // ✅ CONNECT SUPABASE
+  const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
 
-// ✅ CONNECT SUPABASE
-const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  // ✅ INSERT INTO DATABASE
+  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-// ✅ INSERT FEEDBACK
-document.getElementById("feedbackForm").addEventListener("submit", async function(e){
-  e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+    const formMessage = document.getElementById("formMessage");
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-  const formMessage = document.getElementById("formMessage");
+    const { error } = await supabase
+      .from("feedback")
+      .insert([{ name, email, message }]);
 
-  const { error } = await supabase
-    .from("feedback")
-    .insert([{ name, email, message }]);
-
-  if(error){
-    formMessage.style.color = "red";
-    formMessage.innerText = "Submission failed. Check RLS policy.";
-    console.log(error);
-  } else {
-    formMessage.style.color = "green";
-    formMessage.innerText = "Feedback submitted successfully 🌸";
-    document.getElementById("feedbackForm").reset();
-  }
-});
-
+    if (error) {
+      formMessage.style.color = "red";
+      formMessage.innerText = "Submission failed. Check RLS policy.";
+      console.log(error);
+    } else {
+      formMessage.style.color = "green";
+      formMessage.innerText = "Feedback submitted successfully 🌸";
+      document.getElementById("feedbackForm").reset();
+    }
+  });
 </script>
 
-</body>
-</html>
+
 
 
 
