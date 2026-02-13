@@ -1,65 +1,53 @@
-<!-- FEEDBACK SECTION -->
-<section id="feedback" style="padding:80px 20px;">
-  <div style="max-width:600px;margin:auto;background:#fff;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.08);">
-    
-    <h2 style="text-align:center;color:#7b6cd9;margin-bottom:20px;">Feedback</h2>
-
-    <form id="feedbackForm">
-      <input type="text" id="name" placeholder="Your Name" required
-        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;">
-
-      <input type="email" id="email" placeholder="Your Email" required
-        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;">
-
-      <textarea id="message" rows="4" placeholder="Your Message" required
-        style="width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid #ddd;"></textarea>
-
-      <button type="submit"
-        style="background:#7b6cd9;color:#fff;padding:12px 20px;border:none;border-radius:25px;cursor:pointer;width:100%;">
-        Submit Feedback
-      </button>
-    </form>
-
-    <p id="formMessage" style="text-align:center;margin-top:15px;font-weight:500;"></p>
-
-  </div>
-</section>
-
-
 <!-- SUPABASE CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-  // ✅ CONNECT SUPABASE
-  const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
 
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-  // ✅ INSERT INTO DATABASE
-  document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-    const formMessage = document.getElementById("formMessage");
+  const formMessage = document.getElementById("formMessage");
+  formMessage.style.color = "black";
+  formMessage.innerText = "Submitting...";
 
-    const { error } = await supabase
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    formMessage.style.color = "red";
+    formMessage.innerText = "Please fill all fields.";
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase
       .from("feedback")
       .insert([{ name, email, message }]);
 
     if (error) {
+      console.error("Supabase Error:", error);
       formMessage.style.color = "red";
-      formMessage.innerText = "Submission failed. Check RLS policy.";
-      console.log(error);
+      formMessage.innerText = "Error: " + error.message;
     } else {
       formMessage.style.color = "green";
       formMessage.innerText = "Feedback submitted successfully 🌸";
       document.getElementById("feedbackForm").reset();
     }
-  });
+
+  } catch (err) {
+    console.error("Unexpected Error:", err);
+    formMessage.style.color = "red";
+    formMessage.innerText = "Something went wrong!";
+  }
+});
 </script>
+
+
 
 
 
