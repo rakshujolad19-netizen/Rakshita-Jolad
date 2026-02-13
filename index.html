@@ -1,34 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio with Feedback</title>
+<title>My Portfolio | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:Arial;
-  background:#f4efff;
-  text-align:center;
-  padding:40px;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#f4efff,#fff);
+  color:#333;
 }
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:white;
+  z-index:1000;
+}
+nav{
+  max-width:1100px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+nav h1{color:#7b6cd9}
+nav ul{list-style:none;display:flex;gap:18px}
+nav ul li a{text-decoration:none;color:#555}
+nav ul li a:hover{color:#7b6cd9}
+
+section{padding:100px 20px}
+.container{max-width:900px;margin:auto}
+.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{color:#7b6cd9}
+
 .card{
   background:white;
-  padding:30px;
-  max-width:500px;
-  margin:auto;
+  padding:25px;
   border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  margin-bottom:20px;
 }
+
 input,textarea{
   width:100%;
-  padding:10px;
+  padding:12px;
   margin:10px 0;
   border-radius:8px;
   border:1px solid #ccc;
 }
+
 button{
   background:#7b6cd9;
   color:white;
@@ -37,20 +66,43 @@ button{
   border-radius:20px;
   cursor:pointer;
 }
-button:hover{
-  opacity:0.9;
-}
+
+button:hover{opacity:.9}
+
 #responseMessage{
-  margin-top:15px;
+  margin-top:10px;
   font-weight:bold;
 }
+
+footer{text-align:center;padding:20px;color:#777}
 </style>
 </head>
 
 <body>
 
-<h2>Rakshita Feedback Form 💜</h2>
+<header>
+<nav>
+<h1>My Portfolio</h1>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#feedback">Feedback</a></li>
+</ul>
+</nav>
+</header>
 
+<section id="about">
+<div class="container">
+<div class="section-title"><h2>About Me</h2></div>
+<div class="card">
+I am Rakshita Jolad, BCA Cloud Computing student passionate about web development and cloud technologies.
+</div>
+</div>
+</section>
+
+<!-- FEEDBACK SECTION -->
+<section id="feedback">
+<div class="container">
+<div class="section-title"><h2>Feedback</h2></div>
 <div class="card">
 <form id="feedbackForm">
 <input type="text" id="name" placeholder="Your Name" required>
@@ -60,41 +112,56 @@ button:hover{
 <p id="responseMessage"></p>
 </form>
 </div>
+</div>
+</section>
+
+<footer>
+© 2026 Rakshita Jolad 💜
+</footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", function(){
+
 const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-document.getElementById("feedbackForm").addEventListener("submit", async function(e){
+const feedbackForm = document.getElementById("feedbackForm");
+const responseMessage = document.getElementById("responseMessage");
+
+feedbackForm.addEventListener("submit", async function(e){
   e.preventDefault();
 
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
-  const response = document.getElementById("responseMessage");
 
-  response.innerText = "Submitting...";
+  responseMessage.style.color = "black";
+  responseMessage.innerText = "Submitting...";
 
   const { error } = await supabase
     .from("feedback")
     .insert([{ name: name, email: email, message: message }]);
 
   if(error){
-    console.error("Supabase Error:", error);
-    response.style.color = "red";
-    response.innerText = "❌ Feedback not submitted. Please try again.";
+    console.error(error);
+    responseMessage.style.color = "red";
+    responseMessage.innerText = "❌ Feedback not submitted. Please try again.";
   } else {
-    response.style.color = "green";
-    response.innerText = "✅ Feedback submitted correctly!";
-    document.getElementById("feedbackForm").reset();
+    responseMessage.style.color = "green";
+    responseMessage.innerText = "✅ Feedback submitted correctly!";
+    feedbackForm.reset();
   }
+});
+
 });
 </script>
 
 </body>
 </html>
+
+
 
 
 
