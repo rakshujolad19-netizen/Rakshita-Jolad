@@ -203,6 +203,61 @@ section{padding:80px 20px}
   background:#5f52b5;
 }
 
+/* 📱 MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero img {
+    width: 130px;
+    height: 130px;
+  }
+
+  section {
+    padding: 60px 15px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-item img {
+    height: 180px;
+  }
+
+  .cert-card img {
+    height: 160px;
+  }
+
+  .contact a {
+    padding: 12px;
+    margin: 6px;
+  }
+
+  .feedback-form {
+    width: 100%;
+  }
+
+}
+
+
 /* MODAL */
 .modal{
   display:none;
@@ -350,13 +405,28 @@ and prepare me for a successful career in the IT industry.
 <section id="contact">
 <div class="container">
 <div class="section-title"><h2>Get In Touch</h2></div>
+
 <div class="contact">
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="mailto:rakshita@example.com"><i class="fas fa-envelope"></i></a>
+
+  <!-- 🔗 LinkedIn -->
+  <a href="https://www.linkedin.com/in/rakshita-jolad-1b95193b1/" target="_blank">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+
+  <!-- 🔗 GitHub -->
+  <a href="https://github.com/rakshujolad19-netizen" target="_blank">
+    <i class="fab fa-github"></i>
+  </a>
+
+  <!-- 📧 Gmail -->
+  <a href="mailto:25bcla49@kristujayanti.com">
+    <i class="fas fa-envelope"></i>
+  </a>
+
 </div>
 </div>
 </section>
+
 
 
 
