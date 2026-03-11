@@ -431,56 +431,97 @@ and prepare me for a successful career in the IT industry.
 
 
 
-<!-- FEEDBACK -->
 <section id="feedback">
 <div class="container card">
+
 <h2 class="section-title">Feedback</h2>
 
 <form class="feedback-form" id="feedbackForm">
+
 <input type="text" id="name" placeholder="Your Name" required>
+
 <input type="email" id="email" placeholder="Your Email" required>
+
 <textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
+
 <button type="submit">Submit Feedback</button>
+
 </form>
 
-<div class="feedback-status" id="status"></div>
+<div id="status"></div>
+
 </div>
 </section>
 
 <footer style="text-align:center;padding:20px;color:var(--muted)">
-© 2026 Rakshita
+© 2026 Ankit Biyani
 </footer>
 
 <script>
-/* 🔗 SUPABASE CONFIG */
-const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".fill").forEach(b=>{
+if(b.getBoundingClientRect().top < innerHeight-120)
+b.style.width=b.getAttribute("data")+"%";
+});
+});
+</script>
 
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-/* 📨 FEEDBACK SUBMIT */
-document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+<!-- FIREBASE BACKEND -->
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD70x8mchhQumyA9ETrlkinaC0mFQUo3Jc",
+    authDomain: "rakshita-protofolio.firebaseapp.com",
+    projectId: "rakshita-protofolio",
+    storageBucket: "rakshita-protofolio.firebasestorage.app",
+    messagingSenderId: "889255371321",
+    appId: "1:889255371321:web:5e5b340cb339871d3623e8"
+  };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("feedbackForm").addEventListener("submit", async (e)=>{
+
 e.preventDefault();
 
-const status = document.getElementById("status");
-status.innerText = "Submitting...";
+const name=document.getElementById("name").value;
+const email=document.getElementById("email").value;
+const message=document.getElementById("message").value;
+const status=document.getElementById("status");
 
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const message = document.getElementById("message").value;
+status.innerText="Submitting...";
 
-const { error } = await supabaseClient
-.from("feedbacks")
-.insert([{ name, email, message }]);
+try{
 
-if (error) {
-status.innerText = "❌ Error submitting feedback";
-status.style.color = "red";
-} else {
-status.innerText = "✅ Feedback submitted successfully!";
-status.style.color = "#00d4ff";
-e.target.reset();
-}});
+await addDoc(collection(db,"feedbacks"),{
+name:name,
+email:email,
+message:message,
+date:new Date()
+});
+
+status.innerText="✅ Feedback submitted!";
+document.getElementById("feedbackForm").reset();
+
+}
+
+catch(err){
+
+status.innerText="❌ Error submitting feedback";
+console.error(err);
+
+}
+
+});
+
 </script>
 
 </body>
@@ -520,6 +561,7 @@ function closeCert(){certModal.style.display="none";}
 
 </body>
 </html>
+
 
 
 
