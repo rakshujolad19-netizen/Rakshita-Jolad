@@ -466,24 +466,25 @@ b.style.width=b.getAttribute("data")+"%";
 </script>
 
 
-<!-- FIREBASE BACKEND -->
+<!-- FIREBASE -->
 
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-  apiKey: "AIzaSyD70x8mchhQumyA9ETrlkinaC0mFQUo3Jc",
-  authDomain: "rakshita-protofolio.firebaseapp.com",
-  projectId: "rakshita-protofolio",
-  storageBucket: "rakshita-protofolio.firebasestorage.app",
-  messagingSenderId: "889255371321",
-  appId: "1:889255371321:web:5e5b340cb339871d3623e8"
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyD70x8mchhQumyA9ETrlkinaC0mFQUo3J",
+authDomain: "rakshita-protofolio.firebaseapp.com",
+projectId: "rakshita-protofolio",
+storageBucket: "rakshita-protofolio.appspot.com",
+messagingSenderId: "889255371321",
+appId: "1:889255371321:web:5e5b340cb339871d3623e8"
+
 };
-  
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -521,39 +522,6 @@ console.error(err);
 
 });
 
-
-
-
-<footer>
-© 2026 Rakshita Jolad • Lavender Dream 🌸
-</footer>
-
-<!-- MODALS -->
-<div class="modal" id="learningModal" onclick="closeLearning()">
-<div class="modal-content" onclick="event.stopPropagation()">
-<img id="learningImg"><p id="learningText"></p>
-</div>
-</div>
-
-<div class="modal" id="certModal" onclick="closeCert()">
-<div class="modal-content" onclick="event.stopPropagation()">
-<img id="certImg"><p id="certText"></p>
-</div>
-</div>
-
-<script>
-function openLearning(img,text){
-learningModal.style.display="flex";
-learningImg.src=img;
-learningText.innerText=text;
-}
-function closeLearning(){learningModal.style.display="none";}
-function openCert(img,text){
-certModal.style.display="flex";
-certImg.src=img;
-certText.innerText=text;
-}
-function closeCert(){certModal.style.display="none";}
 </script>
 
 </body>
