@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -202,61 +200,6 @@ section{padding:80px 20px}
   background:#5f52b5;
 }
 
-/* 📱 MOBILE RESPONSIVE */
-@media (max-width: 768px) {
-
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .hero h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero img {
-    width: 130px;
-    height: 130px;
-  }
-
-  section {
-    padding: 60px 15px;
-  }
-
-  .card {
-    padding: 18px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .learning-item img {
-    height: 180px;
-  }
-
-  .cert-card img {
-    height: 160px;
-  }
-
-  .contact a {
-    padding: 12px;
-    margin: 6px;
-  }
-
-  .feedback-form {
-    width: 100%;
-  }
-
-}
-
-
 /* MODAL */
 .modal{
   display:none;
@@ -352,7 +295,7 @@ and prepare me for a successful career in the IT industry.
 <div class="container">
 <div class="section-title"><h2>Certifications</h2></div>
 <div class="grid">
-<div class="card cert-card" onclick="openCert('Front and web development.png','Front and web development')">
+<div class="card cert-card" onclick="openCert('Front and web development.png','NASSCOM Certification')">
 <img src="Front and web development.png">
 <h3>Front and web development</h3>
 <small>Click here to see the certificate ↑</small>
@@ -404,171 +347,98 @@ and prepare me for a successful career in the IT industry.
 <section id="contact">
 <div class="container">
 <div class="section-title"><h2>Get In Touch</h2></div>
-
 <div class="contact">
-
-  <!-- 🔗 LinkedIn -->
-  <a href="https://www.linkedin.com/in/rakshita-jolad-1b95193b1/" target="_blank">
-    <i class="fab fa-linkedin-in"></i>
-  </a>
-
-  <!-- 🔗 GitHub -->
-  <a href="https://github.com/rakshujolad19-netizen" target="_blank">
-    <i class="fab fa-github"></i>
-  </a>
-
-  <!-- 📧 Gmail -->
-  <a href="mailto:25bcla49@kristujayanti.com">
-    <i class="fas fa-envelope"></i>
-  </a>
-
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="mailto:rakshita@example.com"><i class="fas fa-envelope"></i></a>
 </div>
 </div>
 </section>
 
+<footer>
+© 2026 Rakshita Jolad • Lavender Dream 🌸
+</footer>
 
-
-
-
+<!-- FEEDBACK -->
 <section id="feedback">
 <div class="container card">
-
 <h2 class="section-title">Feedback</h2>
 
 <form class="feedback-form" id="feedbackForm">
-
 <input type="text" id="name" placeholder="Your Name" required>
-
 <input type="email" id="email" placeholder="Your Email" required>
-
 <textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
-
 <button type="submit">Submit Feedback</button>
-
 </form>
 
-<div id="status"></div>
-
+<div class="feedback-status" id="status"></div>
 </div>
 </section>
 
 <footer style="text-align:center;padding:20px;color:var(--muted)">
-© 2026 Rakshita Jolad
+© 2026 Rakshita Jolad 
 </footer>
 
 <script>
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".fill").forEach(b=>{
-if(b.getBoundingClientRect().top < innerHeight-120)
-b.style.width=b.getAttribute("data")+"%";
-});
-});
+/* 🔗 SUPABASE CONFIG */
+const supabaseUrl = "https://jsopfgirptyfjqhpsyzs.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzb3BmZ2lycHR5ZmpxaHBzeXpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjQ3NzksImV4cCI6MjA4NjU0MDc3OX0.OrBQBpLSQSB8yd8n8yaVRZohRIjkcqcrXkk7fSoICDs";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+/* 📨 FEEDBACK SUBMIT */
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const status = document.getElementById("status");
+status.innerText = "Submitting...";
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+const { error } = await supabaseClient
+.from("feedbacks")
+.insert([{ name, email, message }]);
+
+if (error) {
+status.innerText = "❌ Error submitting feedback";
+status.style.color = "red";
+} else {
+status.innerText = "✅ Feedback submitted successfully!";
+status.style.color = "#00d4ff";
+e.target.reset();
+}});
 </script>
 
 
-<!-- FIREBASE -->
+<!-- MODALS -->
+<div class="modal" id="learningModal" onclick="closeLearning()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="learningImg"><p id="learningText"></p>
+</div>
+</div>
 
-<script type="module">
+<div class="modal" id="certModal" onclick="closeCert()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<img id="certImg"><p id="certText"></p>
+</div>
+</div>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyD70x8mchhQumyA9ETrlkinaC0mFQUo3J",
-authDomain: "rakshita-protofolio.firebaseapp.com",
-projectId: "rakshita-protofolio",
-storageBucket: "rakshita-protofolio.appspot.com",
-messagingSenderId: "889255371321",
-appId: "1:889255371321:web:5e5b340cb339871d3623e8"
-
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-document.getElementById("feedbackForm").addEventListener("submit", async (e)=>{
-
-e.preventDefault();
-
-const name=document.getElementById("name").value;
-const email=document.getElementById("email").value;
-const message=document.getElementById("message").value;
-const status=document.getElementById("status");
-
-status.innerText="Submitting...";
-
-try{
-
-await addDoc(collection(db,"feedbacks"),{
-name:name,
-email:email,
-message:message,
-date:new Date()
-});
-
-status.innerText="✅ Feedback submitted!";
-document.getElementById("feedbackForm").reset();
-
+<script>
+function openLearning(img,text){
+learningModal.style.display="flex";
+learningImg.src=img;
+learningText.innerText=text;
 }
-
-catch(err){
-
-status.innerText="❌ Error submitting feedback";
-console.error(err);
-
+function closeLearning(){learningModal.style.display="none";}
+function openCert(img,text){
+certModal.style.display="flex";
+certImg.src=img;
+certText.innerText=text;
 }
-
-});
-
+function closeCert(){certModal.style.display="none";}
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
